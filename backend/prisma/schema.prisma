@@ -1,0 +1,22 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Projeto {
+  id          String   @id @default(uuid())
+  nome        String
+  descricao   String?
+  status      String   @default("PLANEJAMENTO")
+  prioridade  String   @default("MEDIA")
+  responsavel String
+  dataInicio  DateTime?
+  prazo       DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
