@@ -6,6 +6,9 @@ import cors from "cors";
 import { projetoRoutes } from "./routes/projeto.routes.js";
 import { errorMiddleware } from "./middlewares/error.middleware.js";
 
+import swaggerUi from "swagger-ui-express";
+import { swaggerDocument } from "./docs/swagger.js";
+
 const app = express();
 
 const PORT = Number(process.env.PORT) || 3000;
@@ -17,6 +20,18 @@ app.use(
 );
 
 app.use(express.json());
+
+app.use(
+  "/api/docs",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocument, {
+    customSiteTitle: "Paradoxon | API Docs",
+    swaggerOptions: {
+      docExpansion: "list",
+      persistAuthorization: true,
+    },
+  })
+);
 
 app.get("/api/health", (_req, res) => {
   res.status(200).json({

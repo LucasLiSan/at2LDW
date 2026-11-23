@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import { projetoService } from "@/services/projeto.service";
+import type { EstatisticasProjetos } from "@/types/projeto";
 
 import {
   Card,
@@ -14,26 +17,56 @@ import {
 } from "lucide-react";
 
 export function Dashboard() {
+  const [estatisticas, setEstatisticas] = useState<EstatisticasProjetos | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    let ativo = true;
+    async function carregar() {
+      try {
+        const dados = await projetoService.estatisticas();
+        if (ativo) setEstatisticas(dados);
+      } catch {
+        if (ativo) setError(true);
+      } finally {
+        if (ativo) setLoading(false);
+      }
+    }
+    void carregar();
+    return () => {
+      ativo = false;
+    };
+  }, []);
+  
   const indicadores = [
     {
-      titulo: "Registros",
-      valor: "—",
-      descricao: "Aguardando integração com a API",
+      titulo: "Total de projetos",
+      valor: loading ? "..." : error ? "—" : String(estatisticas?.total ?? 0),
+      descricao: "Projetos cadastrados",
       icon: Database,
     },
     {
-      titulo: "Operações",
-      valor: "CRUD",
-      descricao: "Gerenciamento completo",
+      titulo: "Em andamento",
+      valor: loading
+        ? "..."
+        : error
+          ? "—"
+          : String(estatisticas?.porStatus.EM_ANDAMENTO ?? 0),
+      descricao: "Projetos em execução",
       icon: Activity,
     },
     {
-      titulo: "Backend",
-      valor: "Pendente",
-      descricao: "API REST da AT1",
+      titulo: "Concluídos",
+      valor: loading
+        ? "..."
+        : error
+          ? "—"
+          : String(estatisticas?.porStatus.CONCLUIDO ?? 0),
+      descricao: "Projetos finalizados",
       icon: Server,
     },
   ];
+
 
   return (
     <div className="space-y-8">
