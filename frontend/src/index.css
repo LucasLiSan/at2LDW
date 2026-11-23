@@ -1,0 +1,152 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #D9D0BF;
+  --foreground: #17151D;
+
+  --card: #E8E1D6;
+  --card-foreground: #17151D;
+
+  --popover: #E8E1D6;
+  --popover-foreground: #17151D;
+
+  --primary: #392A4D;
+  --primary-foreground: #FFFFFF;
+
+  --secondary: #B6A7A0;
+  --secondary-foreground: #17151D;
+
+  --muted: #CEC3B5;
+  --muted-foreground: #594E59;
+
+  --accent: #B13C82;
+  --accent-foreground: #FFFFFF;
+
+  --destructive: #B42345;
+
+  --border: #B6A7A0;
+  --input: #B6A7A0;
+  --ring: #B13C82;
+
+  --radius: 0.75rem;
+
+  --sidebar: #17151D;
+  --sidebar-foreground: #D9D0BF;
+  --sidebar-primary: #B13C82;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #392A4D;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #392A4D;
+  --sidebar-ring: #B13C82;
+}
+
+.dark {
+  --background: #17151D;
+  --foreground: #D9D0BF;
+
+  --card: #241E2C;
+  --card-foreground: #D9D0BF;
+
+  --popover: #241E2C;
+  --popover-foreground: #D9D0BF;
+
+  --primary: #B13C82;
+  --primary-foreground: #FFFFFF;
+
+  --secondary: #392A4D;
+  --secondary-foreground: #D9D0BF;
+
+  --muted: #30283A;
+  --muted-foreground: #B6A7A0;
+
+  --accent: #392A4D;
+  --accent-foreground: #FFFFFF;
+
+  --destructive: #F16B83;
+
+  --border: #493C50;
+  --input: #493C50;
+  --ring: #B13C82;
+
+  --sidebar: #17151D;
+  --sidebar-foreground: #D9D0BF;
+  --sidebar-primary: #B13C82;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #392A4D;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #392A4D;
+  --sidebar-ring: #B13C82;
+}
+
+@theme inline {
+  --font-sans: "Manrope", sans-serif;
+  --font-serif: "Cormorant Garamond", serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.font-display {
+  font-family: "Cormorant Garamond", serif;
+}
